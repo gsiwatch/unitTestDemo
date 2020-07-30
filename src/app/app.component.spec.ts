@@ -1,31 +1,27 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+// Component class testing
+
+import { AppComponent } from "./app.component";
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  let comp: AppComponent;
+  beforeEach(() => {
+    comp = new AppComponent();
   });
 
-  it(`should have as title 'unitTestDemo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('unitTestDemo');
+  it('#clicked() should toggle #isOn', () => {
+    expect(comp.isOn).toBe(false, 'off at first');
+
+    comp.clicked();
+    expect(comp.isOn).toBe(true, 'on after click');
+
+    comp.clicked();
+    expect(comp.isOn).toBe(false, 'off after second clicked');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('unitTestDemo app is running!');
+  it('#clicked() should set #message to "is on"', () => {
+    expect(comp.message).toMatch(/is off/i, 'off at first');
+
+    comp.clicked();
+    expect(comp.message).toMatch(/is on/i, 'on after clicked');
   });
 });
