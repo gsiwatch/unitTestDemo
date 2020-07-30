@@ -1,6 +1,6 @@
 // Component class testing
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let comp: AppComponent;
